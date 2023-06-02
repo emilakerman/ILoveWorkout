@@ -12,9 +12,6 @@ import FirebaseAuth
 struct ContentView: View {
     @AppStorage("uid") var userID: String = ""
 
-    
-    /* initial commit emil */
-    
     var body: some View {
         
         if userID == "" {
@@ -37,13 +34,9 @@ struct ContentView: View {
                         Text("Profile")
                     }
             }.navigationBarBackButtonHidden(true)
-            
         }
     }
 }
-
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
