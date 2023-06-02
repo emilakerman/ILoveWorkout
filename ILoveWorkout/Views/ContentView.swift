@@ -12,6 +12,9 @@ import FirebaseAuth
 struct ContentView: View {
     @AppStorage("uid") var userID: String = ""
 
+    
+    /* initial commit emil */
+    
     var body: some View {
         
         if userID == "" {
