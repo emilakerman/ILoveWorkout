@@ -10,17 +10,11 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-
 struct ButtonView: View {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
-    
     @State var content : String = ""
     @Environment(\.presentationMode) var presentationMode
-    
-    
-    
     
     var body: some View {
         VStack{
@@ -35,20 +29,14 @@ struct ButtonView: View {
             presentationMode.wrappedValue.dismiss()
         })
     }
-    
-
-    
-    func saveExercise(workoutName: String) {
-        if let currentUser {
+func saveExercise(workoutName: String) {
+    if let currentUser {
         db.collection("users").document(currentUser.uid).collection("exercises").addDocument(data:
-                                                                                                   ["name" : workoutName,
-                                                                                                    "exercise" : "",
-                                                                                                    "done": false,
-                                                                                                    "date": Date(),
-                                                                                                    "workoutCount": 1])
-            }
-
+           ["name" : workoutName,
+            "exercise" : "",
+            "done": false,
+            "date": Date(),
+            "workoutCount": 1])
         }
-        
-    
+    }
 }
