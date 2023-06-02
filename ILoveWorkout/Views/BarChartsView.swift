@@ -14,7 +14,6 @@ import Foundation
 
 struct BarChartsView: View {
    
-    
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
     
@@ -30,7 +29,6 @@ struct BarChartsView: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .padding(.bottom, 12)
-            
             Chart {
                 RuleMark(y: .value("Goal", 200))
                     .foregroundStyle(Color.black)
@@ -57,7 +55,6 @@ struct BarChartsView: View {
             }
             .chartYAxis {
                 AxisMarks(position: .leading)
-                
             }
             HStack {
                 Image(systemName: "line.diagonal")
@@ -69,8 +66,6 @@ struct BarChartsView: View {
             }
             .font(.caption2)
             .padding(.leading, 4)
-            
-            
         }
         .onAppear() {
             listenToFirestore()
@@ -103,15 +98,7 @@ struct BarChartsView: View {
             }
         }
     }
-    
-
 }
-//struct BarChartsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BarChartsView(workoutitems: <#[WorkoutItem]#>)
-//    }
-//}
-
 extension Date {
     static func from(month: Int) -> Date {
         let components = DateComponents(month: month)
