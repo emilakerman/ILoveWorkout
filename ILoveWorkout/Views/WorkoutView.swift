@@ -11,13 +11,11 @@ import FirebaseAuth
 
 
 struct WorkoutView: View {
-    //@AppStorage("uid") var userID: String = ""
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
    
     @State var workoutitems = [WorkoutItem]()
     @State var logoutOptions = false
-    
 
     var body: some View {
         NavigationView {
@@ -31,7 +29,6 @@ struct WorkoutView: View {
                                 if let user = currentUser {
                                     if let documentid = workoutitems.id {
                                         db.collection("users").document(user.uid).collection("exercises").document(documentid).updateData(["done": !workoutitems.done])
-                                        
                                     }
                                 }
                             }) {
@@ -61,11 +58,9 @@ struct WorkoutView: View {
                     listenToFirestore()
                 }
                 .padding()
+            }
         }
-}
-    
-
-    //Läser ner firebase övningar, hämtar data från firebase.
+    //Reads firebase workout data
     func listenToFirestore() {
         if let currentUser {
             db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, err in
@@ -92,8 +87,6 @@ struct WorkoutView: View {
             }
         }
     }
-        
-
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()

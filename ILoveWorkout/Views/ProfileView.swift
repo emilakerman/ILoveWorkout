@@ -43,32 +43,25 @@ struct ProfileView: View {
                             proxy.size.height / 1)
                     .onReceive(timer, perform: { _ in
                         next()
-                        
                         })
-                
             }
             controls
             Spacer()
             Spacer()
-            
         }
-        
     }
-    
     func previous() {
         withAnimation {
             currentIndex = currentIndex > 0 ? currentIndex
             - 1 : numberOfImages  - 1
         }
     }
-
     func next() {
         withAnimation {
             currentIndex = currentIndex <
                 numberOfImages ? currentIndex + 1 : 0
             }
         }
-    
     var controls: some View {
         HStack {
             Button {
@@ -84,11 +77,9 @@ struct ProfileView: View {
                 Image(systemName: "chevron.right")
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                
             }
         }
     }
-    
     private var TopNavigationBarView: some View {
         HStack(spacing: 16) {
             
@@ -96,7 +87,6 @@ struct ProfileView: View {
                 .font(.system(size: 64))
                 .padding()
                 .foregroundColor(Color(.label))
-            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Welcome")
                     .font(.system(size: 24, weight: .bold))
@@ -110,7 +100,6 @@ struct ProfileView: View {
                         .foregroundColor(Color(.lightGray))
                 }
             }
-            
             Spacer()
             Button {
                 logoutOptions.toggle()
@@ -137,18 +126,12 @@ struct ProfileView: View {
                     } catch let signOutError as NSError {
                         print("Error signing out: #€", signOutError)
                     }
-                    
-                    //try? Auth.auth().signOut()
                 }),
                 .cancel()
              ])
         }
-
     }
-    
 }
-
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
