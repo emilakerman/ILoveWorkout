@@ -38,10 +38,9 @@ struct WorkoutView: View {
                     }.onDelete() { indexSet in
                         for index in indexSet {
                             let workoutitem = workoutitems[index]
-                            if let id = workoutitem.id,
-                               let user = Auth.auth().currentUser
+                            if let id = workoutitem.id
                             {
-                                db.collection("users").document(user.uid).collection("exercises").document(id).delete()
+                                deleteExerciseFromFireStore(id: id)
                             }
                         }
                     }
@@ -59,6 +58,11 @@ struct WorkoutView: View {
                 }
                 .padding()
         }
+    }
+    //Deletes exercise from firestore
+    func deleteExerciseFromFireStore(id: String) {
+        let user = Auth.auth().currentUser
+        db.collection("users").document(user?.uid ?? "").collection("exercises").document(id).delete()
     }
     //Reads firebase workout data
     func listenToFirestore() {
