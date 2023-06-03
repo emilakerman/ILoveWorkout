@@ -89,10 +89,7 @@ struct loginView: View {
                     Text("Don't have an account?")
                         .foregroundColor(.black.opacity(0.7))
                 }
-                
                 Spacer()
-                Spacer()
-                
                 Button(action: signIn) {
                     Text("Sign in")
                         .foregroundColor(.white)
