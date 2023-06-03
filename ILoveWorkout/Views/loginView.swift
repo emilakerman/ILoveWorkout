@@ -104,15 +104,13 @@ struct loginView: View {
         }
         .navigationBarBackButtonHidden(true)
     }
-    
     func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                print(error)
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, authError in
+            if let authError = authError {
+                print(authError)
                 return
             }
             if let authResult = authResult {
-                print(authResult.user.uid)
                 withAnimation {
                     userID = authResult.user.uid
                 }
@@ -120,4 +118,3 @@ struct loginView: View {
         }
     }
 }
-
