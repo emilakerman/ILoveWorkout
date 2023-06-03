@@ -93,43 +93,34 @@ struct loginView: View {
                 Spacer()
                 Spacer()
                 
-                Button {
-                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                        if let error = error {
-                            print(error)
-                            return
-                        }
-                        
-                        if let authResult = authResult {
-                            print(authResult.user.uid)
-                            withAnimation {
-                                userID = authResult.user.uid
-                                    
-                                
-                            }
-                        }
-                    }
-                    
-                } label: {
+                Button(action: signIn) {
                     Text("Sign in")
                         .foregroundColor(.white)
                         .font(.title3)
                         .bold()
-                    
                         .frame(maxWidth: .infinity)
                         .padding()
-                    
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.black)
-                                     
-                        )
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.black))
                         .padding(.horizontal)
                 }
-
-                
             }
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    func signIn() {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let authResult = authResult {
+                print(authResult.user.uid)
+                withAnimation {
+                    userID = authResult.user.uid
+                }
+            }
+        }
     }
 }
 
