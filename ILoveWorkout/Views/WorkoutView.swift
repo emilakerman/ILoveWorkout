@@ -13,10 +13,10 @@ import FirebaseAuth
 struct WorkoutView: View {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-   
+    
     @State var workoutitems = [WorkoutItem]()
     @State var logoutOptions = false
-
+    
     var body: some View {
         NavigationView {
             VStack() {
@@ -47,19 +47,19 @@ struct WorkoutView: View {
                     }
                 }
             }.navigationBarTitle("Exercise List")
-             .navigationBarItems(trailing: NavigationLink(destination: ButtonView())
+                .navigationBarItems(trailing: NavigationLink(destination: ButtonView())
                                     {
                     Image(systemName: "plus.circle")
-                     .transition(.move(edge: .bottom
-                                      ))
+                        .transition(.move(edge: .bottom
+                                         ))
                 })
-                
+            
                 .onAppear() {
                     listenToFirestore()
                 }
                 .padding()
-            }
         }
+    }
     //Reads firebase workout data
     func listenToFirestore() {
         if let currentUser {
@@ -71,7 +71,7 @@ struct WorkoutView: View {
                 } else {
                     workoutitems.removeAll()
                     for document in snapshot.documents {
-
+                        
                         let result = Result {
                             try document.data(as: WorkoutItem.self)
                         }
@@ -80,13 +80,13 @@ struct WorkoutView: View {
                             workoutitems.append(workoutitem)
                         case .failure(let error) :
                             print("Error decoding workoutitem: \(error)")
-                           }
                         }
                     }
                 }
             }
         }
     }
+}
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()

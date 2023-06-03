@@ -24,7 +24,7 @@ struct FirstScreenView: View {
                         .foregroundColor(.white)
                     Spacer()
                     NavigationLink (destination:
-                                   ContentView(), isActive:
+                                        ContentView(), isActive:
                                         $isActive) {
                         Button(action: {
                             isActive = true

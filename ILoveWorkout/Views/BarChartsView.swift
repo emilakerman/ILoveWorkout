@@ -13,12 +13,12 @@ import Foundation
 
 
 struct BarChartsView: View {
-   
+    
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
     
     @State var workoutCounter = [WorkoutItem]()
-
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 4) {

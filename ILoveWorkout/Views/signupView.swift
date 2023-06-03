@@ -56,12 +56,12 @@ struct signupView: View {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
-                        }
                     }
-                    .foregroundColor(.white)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
+                }
+                .foregroundColor(.white)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
                         .foregroundColor(.white)
                 )
