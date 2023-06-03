@@ -10,18 +10,14 @@ import FirebaseAuth
 
 struct loginView: View {
     
-    
     @Binding var currentShowingView: String
     @AppStorage("uid") var userID: String = ""
-    
     @State private var email: String = ""
     @State private var password: String = ""
-    
     
     var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
-            
             VStack {
                 HStack {
                     Text("Hello, & Welcome")
@@ -47,8 +43,6 @@ struct loginView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.green)
                     }
-                    
-
                 }
                 .padding()
                 .overlay(
@@ -57,8 +51,6 @@ struct loginView: View {
                         .foregroundColor(.black)
                 )
                 .padding()
-                
-                
                 HStack {
                     Image(systemName: "lock")
                     SecureField("Password", text:$password)
@@ -70,7 +62,6 @@ struct loginView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.green)
                         }
-                    
                     }
                 .padding()
                 .overlay(
@@ -79,12 +70,10 @@ struct loginView: View {
                         .foregroundColor(.black)
                 )
                 .padding()
-                
                 Button(action: {
                     withAnimation {
                         self.currentShowingView = "signup"
                     }
-
                 }) {
                     Text("Don't have an account?")
                         .foregroundColor(.black.opacity(0.7))

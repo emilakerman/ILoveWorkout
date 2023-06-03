@@ -11,7 +11,6 @@ import FirebaseAuth
 struct AuthView: View {
     @State private var currentViewShowing: String = "login" //login or signup
     
-    
     var body: some View {
         if(currentViewShowing == "login") {
             loginView(currentShowingView: $currentViewShowing)
