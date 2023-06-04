@@ -28,7 +28,7 @@ struct WorkoutView: View {
                             Button(action: {
                                 if let user = currentUser {
                                     if let documentid = workoutitems.id {
-                                        db.collection("users").document(user.uid).collection("exercises").document(documentid).updateData(["done": !workoutitems.done])
+                                        updateFireStoreCheckbox(documentid: documentid, user: user, workoutitems: workoutitems)
                                     }
                                 }
                             }) {
@@ -58,6 +58,10 @@ struct WorkoutView: View {
                 }
                 .padding()
         }
+    }
+    //Updates the "done" check box
+    func updateFireStoreCheckbox(documentid: String, user: User, workoutitems: WorkoutItem) {
+        db.collection("users").document(user.uid).collection("exercises").document(documentid).updateData(["done": !workoutitems.done])
     }
     //Deletes exercise from firestore
     func deleteExerciseFromFireStore(id: String) {

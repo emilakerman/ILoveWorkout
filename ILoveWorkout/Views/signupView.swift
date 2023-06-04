@@ -49,7 +49,7 @@ struct signupView: View {
                 .padding()
                 HStack {
                     Image(systemName: "lock")
-                    SecureField("Password", text:$password)
+                    SecureField("Password", text: $password)
                     Spacer()
                     if (password != "") {
                         Image(systemName: "checkmark")

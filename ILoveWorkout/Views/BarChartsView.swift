@@ -45,7 +45,6 @@ struct BarChartsView: View {
             }
             .frame(height: 180)
             .chartYScale()
-            //Lägga till Y-Axis markers???
             .chartXAxis {
                 AxisMarks(values: workoutCounter.map {$0.date}) { date in
                     AxisValueLabel(format:

@@ -15,18 +15,14 @@ struct ProfileView: View {
     @State var logoutOptions = false
     @State private var userIsLoggedIn = false
     @State private var currentIndex = 0
-    
-    
     private var numberOfImages = 6
-    private let timer = Timer.publish(every: 2, on: .main, in: .common
-    ).autoconnect()
+    private let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
             TopNavigationBarView
             Spacer()
             BarChartsView()
-            
             GeometryReader { proxy in
                 TabView(selection: $currentIndex) {
                     ForEach(0..<numberOfImages) { num in
@@ -116,7 +112,6 @@ struct ProfileView: View {
         .actionSheet(isPresented: $logoutOptions) {
             .init(title: Text("Alert"), message: Text("Do you want to logout?"), buttons: [
                 .destructive(Text("Sign out"), action: {
-                    print("Succes! You signed out")
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()

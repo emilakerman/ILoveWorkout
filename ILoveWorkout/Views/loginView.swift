@@ -33,10 +33,10 @@ struct loginView: View {
                 
                 HStack {
                     Image(systemName: "mail")
-                    TextField("Email", text:$email)
+                    TextField("Email", text: $email)
                     
                     Spacer()
-                    if(email.count != 0) {
+                    if(email != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
@@ -51,9 +51,9 @@ struct loginView: View {
                 .padding()
                 HStack {
                     Image(systemName: "lock")
-                    SecureField("Password", text:$password)
+                    SecureField("Password", text: $password)
                     Spacer()
-                    if (password.count != 0) {
+                    if (password != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
