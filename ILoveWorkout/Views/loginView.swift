@@ -75,7 +75,7 @@ struct loginView: View {
                         .foregroundColor(.black.opacity(0.7))
                 }
                 Spacer()
-                Button(action: signIn) {
+                Button(action: signInToFirebaseAuth) {
                     Text("Sign in")
                         .foregroundColor(.white)
                         .font(.title3)
@@ -89,7 +89,7 @@ struct loginView: View {
         }
         .navigationBarBackButtonHidden(true)
     }
-    func signIn() {
+    func signInToFirebaseAuth() {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, authError in
             if let authError = authError {
                 print(authError)

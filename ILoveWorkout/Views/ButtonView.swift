@@ -21,15 +21,14 @@ struct ButtonView: View {
             TextEditor(text: $content)
                 .background(.gray)
                 .onTapGesture {
-                    //Kanske inte behövs?, hade cleartext behövs inte än.
                 }
         }
         .navigationBarItems(trailing: Button("Save") {
-            saveExercise(workoutName: content)
+            saveExerciseToFireStore(workoutName: content)
             presentationMode.wrappedValue.dismiss()
         })
     }
-func saveExercise(workoutName: String) {
+func saveExerciseToFireStore(workoutName: String) {
     if let currentUser {
         db.collection("users").document(currentUser.uid).collection("exercises").addDocument(data:
            ["name" : workoutName,

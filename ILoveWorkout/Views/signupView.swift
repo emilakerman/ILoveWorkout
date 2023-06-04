@@ -24,7 +24,6 @@ struct signupView: View {
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
-                    
                     Spacer()
                 }
                 .padding()
@@ -32,9 +31,9 @@ struct signupView: View {
                 Spacer()
                 HStack {
                     Image(systemName: "mail")
-                    TextField("Email", text:$email)
+                    TextField("Email", text: $email)
                     Spacer()
-                    if(email.count != 0) {
+                    if(email != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
@@ -52,7 +51,7 @@ struct signupView: View {
                     Image(systemName: "lock")
                     SecureField("Password", text:$password)
                     Spacer()
-                    if (password.count != 0) {
+                    if (password != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
@@ -75,7 +74,7 @@ struct signupView: View {
                         .foregroundColor(.gray)
                 }
                 Spacer()
-                Button (action: signUp) {
+                Button (action: signUpToFirebaseAuth) {
                     Text("Create New Account")
                         .foregroundColor(.black)
                         .font(.title3)
@@ -91,7 +90,7 @@ struct signupView: View {
             }
         }
     }
-    func signUp() {
+    func signUpToFirebaseAuth() {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, authError in
             if let authError = authError {
                 print(authError)
