@@ -34,7 +34,7 @@ struct BarChartsView: View {
                     .foregroundStyle(Color.black)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                 
-                ForEach(workoutCounter) { workoutcounter in
+                ForEach(workoutCounter, id: \.self) { workoutcounter in
                     BarMark(
                         x: .value("Month", workoutcounter.date, unit: .month),
                         y: .value("WorkoutCount", workoutcounter.workoutCount)

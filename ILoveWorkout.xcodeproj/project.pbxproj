@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20CE49422A2B5D3500A3298F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20CE49412A2B5D3500A3298F /* GoogleService-Info.plist */; };
+		20CE49442A2DEC2900A3298F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20CE49432A2DEC2900A3298F /* GoogleService-Info.plist */; };
 		8DA495EB2994F3CB003A0CD0 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495EA2994F3CB003A0CD0 /* ButtonView.swift */; };
 		8DA495F1299D8378003A0CD0 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495F0299D8378003A0CD0 /* loginView.swift */; };
 		8DA495F3299D8B4A003A0CD0 /* signupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495F2299D8B4A003A0CD0 /* signupView.swift */; };
@@ -50,7 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20CE49412A2B5D3500A3298F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20CE49432A2DEC2900A3298F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DA495EA2994F3CB003A0CD0 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8DA495F0299D8378003A0CD0 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		8DA495F2299D8B4A003A0CD0 /* signupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupView.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			children = (
 				8DD3F692297F1B9E008D5F77 /* Views */,
 				8DD3F65B297E94B1008D5F77 /* ILoveWorkoutApp.swift */,
-				20CE49412A2B5D3500A3298F /* GoogleService-Info.plist */,
+				20CE49432A2DEC2900A3298F /* GoogleService-Info.plist */,
 				8DD3F65F297E94B7008D5F77 /* Assets.xcassets */,
 				8DD3F661297E94B7008D5F77 /* Preview Content */,
 				8DD3F68D297F069C008D5F77 /* Color+Extension.swift */,
@@ -302,7 +302,7 @@
 			files = (
 				8DD3F663297E94B7008D5F77 /* Preview Assets.xcassets in Resources */,
 				8DD3F660297E94B7008D5F77 /* Assets.xcassets in Resources */,
-				20CE49422A2B5D3500A3298F /* GoogleService-Info.plist in Resources */,
+				20CE49442A2DEC2900A3298F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

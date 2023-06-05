@@ -25,7 +25,7 @@ struct ProfileView: View {
             BarChartsView()
             GeometryReader { proxy in
                 TabView(selection: $currentIndex) {
-                    ForEach(0..<numberOfImages) { num in
+                    ForEach(0..<numberOfImages, id: \.self) { num in
                         Image("\(num)")
                             .resizable()
                             .scaledToFill()

@@ -13,15 +13,13 @@ import FirebaseAuth
 struct WorkoutView: View {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
     @State var workoutitems = [WorkoutItem]()
-    @State var logoutOptions = false
     
     var body: some View {
         NavigationView {
             VStack() {
                 List {
-                    ForEach(workoutitems) {workoutitems in
+                    ForEach(workoutitems, id: \.self) {workoutitems in
                         HStack {
                             Text(workoutitems.name)
                             Spacer()
@@ -65,8 +63,7 @@ struct WorkoutView: View {
     }
     //Deletes exercise from firestore
     func deleteExerciseFromFireStore(id: String) {
-        let user = Auth.auth().currentUser
-        db.collection("users").document(user?.uid ?? "").collection("exercises").document(id).delete()
+        db.collection("users").document(currentUser?.uid ?? "").collection("exercises").document(id).delete()
     }
     //Reads firebase workout data
     func listenToFirestore() {
