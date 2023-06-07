@@ -13,7 +13,7 @@ import FirebaseCore
 
 @main
 struct ILoveWorkoutApp: App {
-    
+        
     init() {
         FirebaseApp.configure()
     }

@@ -11,26 +11,25 @@ import FirebaseAuth
 
 
 struct WorkoutView: View {
+    @State var workoutitems = [WorkoutItem]()
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    @State var workoutitems = [WorkoutItem]()
+    let firebaseManager = FirebaseManager()
     
     var body: some View {
         NavigationView {
             VStack() {
                 List {
-                    ForEach(workoutitems, id: \.self) {workoutitems in
+                    ForEach(workoutitems, id: \.self) {workoutitem in
                         HStack {
-                            Text(workoutitems.name)
+                            Text(workoutitem.name)
                             Spacer()
                             Button(action: {
-                                if let user = currentUser {
-                                    if let documentid = workoutitems.id {
-                                        updateFireStoreCheckbox(documentid: documentid, user: user, workoutitems: workoutitems)
+                                    if let documentid = workoutitem.id {
+                                        firebaseManager.updateFireStoreCheckbox(documentid: documentid, workoutitem: workoutitem)
                                     }
-                                }
                             }) {
-                                Image(systemName: workoutitems.done ? "checkmark.square" : "square")
+                                Image(systemName: workoutitem.done ? "checkmark.square" : "square")
                             }
                         }
                     }.onDelete() { indexSet in
@@ -38,7 +37,7 @@ struct WorkoutView: View {
                             let workoutitem = workoutitems[index]
                             if let id = workoutitem.id
                             {
-                                deleteExerciseFromFireStore(id: id)
+                                firebaseManager.deleteExerciseFromFireStore(id: id)
                             }
                         }
                     }
@@ -56,14 +55,6 @@ struct WorkoutView: View {
                 }
                 .padding()
         }
-    }
-    //Updates the "done" check box
-    func updateFireStoreCheckbox(documentid: String, user: User, workoutitems: WorkoutItem) {
-        db.collection("users").document(user.uid).collection("exercises").document(documentid).updateData(["done": !workoutitems.done])
-    }
-    //Deletes exercise from firestore
-    func deleteExerciseFromFireStore(id: String) {
-        db.collection("users").document(currentUser?.uid ?? "").collection("exercises").document(id).delete()
     }
     //Reads firebase workout data
     func listenToFirestore() {

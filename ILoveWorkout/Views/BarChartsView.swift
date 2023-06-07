@@ -69,7 +69,6 @@ struct BarChartsView: View {
         }
         .padding()
     }
-    
     func listenToFirestore() {
         if let currentUser {
             db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, errorLoading in

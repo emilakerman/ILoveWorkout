@@ -11,26 +11,17 @@ import Firebase
 import FirebaseAuth
 
 struct ButtonView: View {
-    let db = Firestore.firestore()
-    let currentUser = Auth.auth().currentUser
     @State var content : String = ""
     @Environment(\.presentationMode) var presentationMode
     
+    let firebaseManager = FirebaseManager()
+    
     var body: some View {
+        Text("Enter workout name and amount")
         TextEditor(text: $content)
         .navigationBarItems(trailing: Button("Save") {
-            saveExerciseToFireStore(workoutName: content)
+            firebaseManager.saveExerciseToFireStore(workoutNameAndCount: content)
             presentationMode.wrappedValue.dismiss()
         })
-    }
-func saveExerciseToFireStore(workoutName: String) {
-    if let currentUser {
-        db.collection("users").document(currentUser.uid).collection("exercises").addDocument(data:
-           ["name" : workoutName,
-            "exercise" : "",
-            "done": false,
-            "date": Date(),
-            "workoutCount": 1])
-        }
     }
 }

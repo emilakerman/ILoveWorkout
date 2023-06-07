@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20CE49442A2DEC2900A3298F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20CE49432A2DEC2900A3298F /* GoogleService-Info.plist */; };
+		20F9CA0E2A30A26800ADF6B6 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9CA0D2A30A26800ADF6B6 /* FirebaseManager.swift */; };
 		8DA495EB2994F3CB003A0CD0 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495EA2994F3CB003A0CD0 /* ButtonView.swift */; };
 		8DA495F1299D8378003A0CD0 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495F0299D8378003A0CD0 /* loginView.swift */; };
 		8DA495F3299D8B4A003A0CD0 /* signupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA495F2299D8B4A003A0CD0 /* signupView.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		20CE49432A2DEC2900A3298F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20F9CA0D2A30A26800ADF6B6 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8DA495EA2994F3CB003A0CD0 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8DA495F0299D8378003A0CD0 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		8DA495F2299D8B4A003A0CD0 /* signupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				8DD3F661297E94B7008D5F77 /* Preview Content */,
 				8DD3F68D297F069C008D5F77 /* Color+Extension.swift */,
 				8DD3F6B52991630A008D5F77 /* WorkoutItem.swift */,
+				20F9CA0D2A30A26800ADF6B6 /* FirebaseManager.swift */,
 			);
 			path = ILoveWorkout;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F9CA0E2A30A26800ADF6B6 /* FirebaseManager.swift in Sources */,
 				8DD3F696297F1DDD008D5F77 /* ProfileView.swift in Sources */,
 				8DD3F68E297F069C008D5F77 /* Color+Extension.swift in Sources */,
 				8DA495F5299D8D29003A0CD0 /* AuthView.swift in Sources */,
