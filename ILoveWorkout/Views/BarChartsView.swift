@@ -11,12 +11,10 @@ import Firebase
 import FirebaseAuth
 import Foundation
 
-
 struct BarChartsView: View {
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
     @State var workoutCounter = [WorkoutItem]()
     
     var body: some View {
@@ -74,15 +72,13 @@ struct BarChartsView: View {
     
     func listenToFirestore() {
         if let currentUser {
-            db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, err in
+            db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, errorLoading in
                 guard let snapshot = snapshot else {return}
-                
-                if let err = err {
-                    print("Error getting document \(err)")
+                if let errorLoading = errorLoading {
+                    print("Error getting document \(errorLoading)")
                 } else {
                     workoutCounter.removeAll()
                     for document in snapshot.documents {
-                        
                         let result = Result {
                             try document.data(as: WorkoutItem.self)
                         }
@@ -104,4 +100,3 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
 }
-

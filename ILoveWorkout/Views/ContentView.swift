@@ -24,11 +24,6 @@ struct ContentView: View {
                         Image(systemName: "doc.text.below.ecg.fill")
                         Text("Workout")
                     }
-                AuthView()
-                    .tabItem() {
-                        Image(systemName: "person.crop.circle.fill")
-                        Text("Account")
-                    }
                 ProfileView()
                     .tabItem() {
                         Image(systemName: "gearshape.fill")
