@@ -41,8 +41,6 @@ struct ProfileView: View {
                         })
             }
             controls
-            Spacer()
-            Spacer()
         }
     }
     func previous() {
