@@ -10,11 +10,8 @@ import Firebase
 import FirebaseAuth
 
 struct ContentView: View {
-        
     @AppStorage("uid") var userID: String = ""
-    
     var body: some View {
-        
         if userID == "" {
             AuthView()
         } else {
@@ -26,7 +23,7 @@ struct ContentView: View {
                     }
                 ProfileView()
                     .tabItem() {
-                        Image(systemName: "gearshape.fill")
+                        Image(systemName: "person.crop.circle.fill")
                         Text("Profile")
                     }
             }.navigationBarBackButtonHidden(true)

@@ -30,10 +30,10 @@ struct FirstScreenView: View {
                             isActive = true
                         }) {
                             HStack {
-                                Image(systemName: "plus.circle")
+                                Image(systemName: "arrow.right.circle")
                                     .font(.system(size: 24))
                                     .foregroundColor(.white)
-                                Text("Continue")
+                                Text("Get started")
                                     .font(.system(size: 24))
                                     .foregroundColor(.white)
                             }.padding()

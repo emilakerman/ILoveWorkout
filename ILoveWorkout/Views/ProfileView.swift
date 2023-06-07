@@ -12,8 +12,7 @@ import Charts
 
 struct ProfileView: View {
     @AppStorage("uid") var userID: String = ""
-    @State var logoutOptions = false
-    @State private var userIsLoggedIn = false
+    @State var showLogoutWindow = false
     @State private var currentIndex = 0
     private var numberOfImages = 6
     private let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
@@ -98,9 +97,9 @@ struct ProfileView: View {
             }
             Spacer()
             Button {
-                logoutOptions.toggle()
+                showLogoutWindow.toggle()
             } label: {
-                Image(systemName: "gear")
+                Image(systemName: "door.left.hand.open")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color(.label))
                 Text("Logout")
@@ -109,9 +108,9 @@ struct ProfileView: View {
             }
         }
         .padding()
-        .actionSheet(isPresented: $logoutOptions) {
-            .init(title: Text("Alert"), message: Text("Do you want to logout?"), buttons: [
-                .destructive(Text("Sign out"), action: {
+        .actionSheet(isPresented: $showLogoutWindow) {
+            .init(title: Text("Do you want to logout?"), buttons: [
+                .destructive(Text("Logout"), action: {
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
@@ -119,7 +118,7 @@ struct ProfileView: View {
                             userID = ""
                         }
                     } catch let signOutError as NSError {
-                        print("Error signing out: #€", signOutError)
+                        print("Error signing out:", signOutError)
                     }
                 }),
                 .cancel()
