@@ -17,12 +17,7 @@ struct ButtonView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack{
-            TextEditor(text: $content)
-                .background(.gray)
-                .onTapGesture {
-                }
-        }
+        TextEditor(text: $content)
         .navigationBarItems(trailing: Button("Save") {
             saveExerciseToFireStore(workoutName: content)
             presentationMode.wrappedValue.dismiss()
