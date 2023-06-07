@@ -11,20 +11,18 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestoreSwift
 
-
 struct FirebaseManager {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
     //Save excercise to firestore
-    func saveExerciseToFireStore(workoutNameAndCount: String) {
+    func saveExerciseToFirestore(exerciseType: String, exerciseAmount: Int) {
         if let currentUser {
             db.collection("users").document(currentUser.uid).collection("exercises").addDocument(data:
-               ["name" : workoutNameAndCount,
+               ["name" : exerciseType,
                 "exercise" : "",
                 "done": false,
                 "date": Date(),
-                "workoutCount": 1])
+                "workoutCount": exerciseAmount])
         }
     }
     //Updates the "done" check box

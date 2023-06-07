@@ -22,7 +22,7 @@ struct WorkoutView: View {
                 List {
                     ForEach(workoutitems, id: \.self) {workoutitem in
                         HStack {
-                            Text(workoutitem.name)
+                            Text(workoutitem.name + ", " + String(workoutitem.workoutCount))
                             Spacer()
                             Button(action: {
                                     if let documentid = workoutitem.id {
@@ -42,18 +42,16 @@ struct WorkoutView: View {
                         }
                     }
                 }
-            }.navigationBarTitle("Exercise List")
-                .navigationBarItems(trailing: NavigationLink(destination: ButtonView())
-                                    {
+            }
+            .navigationBarTitle("Exercise List")
+                .navigationBarItems(trailing: NavigationLink(destination: ButtonView()){
                     Image(systemName: "plus.circle")
-                        .transition(.move(edge: .bottom
-                                         ))
-                })
-            
+                        .transition(.move(edge: .bottom))})
+                .background(Color(.systemGroupedBackground))
                 .onAppear() {
                     listenToFirestore()
                 }
-                .padding()
+                .padding(.top, 20)
         }
     }
     //Reads firebase workout data
