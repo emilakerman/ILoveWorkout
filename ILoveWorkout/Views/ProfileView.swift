@@ -12,24 +12,19 @@ import Charts
 
 struct ProfileView: View {
     @AppStorage("uid") var userID: String = ""
-    @State var logoutOptions = false
-    @State private var userIsLoggedIn = false
+    @State var showLogoutWindow = false
     @State private var currentIndex = 0
-    
-    
     private var numberOfImages = 6
-    private let timer = Timer.publish(every: 2, on: .main, in: .common
-    ).autoconnect()
+    private let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
             TopNavigationBarView
             Spacer()
             BarChartsView()
-            
             GeometryReader { proxy in
                 TabView(selection: $currentIndex) {
-                    ForEach(0..<numberOfImages) { num in
+                    ForEach(0..<numberOfImages, id: \.self) { num in
                         Image("\(num)")
                             .resizable()
                             .scaledToFill()
@@ -43,32 +38,23 @@ struct ProfileView: View {
                             proxy.size.height / 1)
                     .onReceive(timer, perform: { _ in
                         next()
-                        
                         })
-                
             }
             controls
-            Spacer()
-            Spacer()
-            
         }
-        
     }
-    
     func previous() {
         withAnimation {
             currentIndex = currentIndex > 0 ? currentIndex
             - 1 : numberOfImages  - 1
         }
     }
-
     func next() {
         withAnimation {
             currentIndex = currentIndex <
                 numberOfImages ? currentIndex + 1 : 0
             }
         }
-    
     var controls: some View {
         HStack {
             Button {
@@ -84,11 +70,9 @@ struct ProfileView: View {
                 Image(systemName: "chevron.right")
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                
             }
         }
     }
-    
     private var TopNavigationBarView: some View {
         HStack(spacing: 16) {
             
@@ -96,7 +80,6 @@ struct ProfileView: View {
                 .font(.system(size: 64))
                 .padding()
                 .foregroundColor(Color(.label))
-            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Welcome")
                     .font(.system(size: 24, weight: .bold))
@@ -110,12 +93,11 @@ struct ProfileView: View {
                         .foregroundColor(Color(.lightGray))
                 }
             }
-            
             Spacer()
             Button {
-                logoutOptions.toggle()
+                showLogoutWindow.toggle()
             } label: {
-                Image(systemName: "gear")
+                Image(systemName: "door.left.hand.open")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color(.label))
                 Text("Logout")
@@ -124,10 +106,9 @@ struct ProfileView: View {
             }
         }
         .padding()
-        .actionSheet(isPresented: $logoutOptions) {
-            .init(title: Text("Alert"), message: Text("Do you want to logout?"), buttons: [
-                .destructive(Text("Sign out"), action: {
-                    print("Succes! You signed out")
+        .actionSheet(isPresented: $showLogoutWindow) {
+            .init(title: Text("Do you want to logout?"), buttons: [
+                .destructive(Text("Logout"), action: {
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
@@ -135,20 +116,14 @@ struct ProfileView: View {
                             userID = ""
                         }
                     } catch let signOutError as NSError {
-                        print("Error signing out: #€", signOutError)
+                        print("Error signing out:", signOutError)
                     }
-                    
-                    //try? Auth.auth().signOut()
                 }),
                 .cancel()
              ])
         }
-
     }
-    
 }
-
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()

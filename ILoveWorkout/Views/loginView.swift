@@ -10,18 +10,14 @@ import FirebaseAuth
 
 struct loginView: View {
     
-    
     @Binding var currentShowingView: String
     @AppStorage("uid") var userID: String = ""
-    
     @State private var email: String = ""
     @State private var password: String = ""
-    
     
     var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all)
-            
             VStack {
                 HStack {
                     Text("Hello, & Welcome")
@@ -37,18 +33,14 @@ struct loginView: View {
                 
                 HStack {
                     Image(systemName: "mail")
-                    TextField("Email", text:$email)
+                    TextField("Email", text: $email)
                     
                     Spacer()
-                    
-                    if(email.count != 0) {
-                        
+                    if(email != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
                     }
-                    
-
                 }
                 .padding()
                 .overlay(
@@ -57,21 +49,16 @@ struct loginView: View {
                         .foregroundColor(.black)
                 )
                 .padding()
-                
-                
                 HStack {
                     Image(systemName: "lock")
-                    SecureField("Password", text:$password)
-                    
+                    SecureField("Password", text: $password)
                     Spacer()
-                    
-                    if (password.count != 0) {
+                    if (password != "") {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
                             .foregroundColor(.green)
-                        }
-                    
                     }
+                }
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -79,57 +66,40 @@ struct loginView: View {
                         .foregroundColor(.black)
                 )
                 .padding()
-                
                 Button(action: {
                     withAnimation {
                         self.currentShowingView = "signup"
                     }
-
                 }) {
                     Text("Don't have an account?")
                         .foregroundColor(.black.opacity(0.7))
                 }
-                
                 Spacer()
-                Spacer()
-                
-                Button {
-                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                        if let error = error {
-                            print(error)
-                            return
-                        }
-                        
-                        if let authResult = authResult {
-                            print(authResult.user.uid)
-                            withAnimation {
-                                userID = authResult.user.uid
-                                    
-                                
-                            }
-                        }
-                    }
-                    
-                } label: {
+                Button(action: signInToFirebaseAuth) {
                     Text("Sign in")
                         .foregroundColor(.white)
                         .font(.title3)
                         .bold()
-                    
                         .frame(maxWidth: .infinity)
                         .padding()
-                    
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.black)
-                                     
-                        )
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.black))
                         .padding(.horizontal)
                 }
-
-                
             }
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
+    }
+    func signInToFirebaseAuth() {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, authError in
+            if let authError = authError {
+                print(authError)
+                return
+            }
+            if let authResult = authResult {
+                withAnimation {
+                    userID = authResult.user.uid
+                }
+            }
+        }
     }
 }
-

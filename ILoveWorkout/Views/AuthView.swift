@@ -9,8 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct AuthView: View {
-    @State private var currentViewShowing: String = "login" //login or signup
-    
+    @State private var currentViewShowing: String = "login"
     
     var body: some View {
         if(currentViewShowing == "login") {
@@ -23,7 +22,6 @@ struct AuthView: View {
         }
     }
 }
-
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()

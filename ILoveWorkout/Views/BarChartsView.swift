@@ -11,15 +11,12 @@ import Firebase
 import FirebaseAuth
 import Foundation
 
-
 struct BarChartsView: View {
-   
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    
     @State var workoutCounter = [WorkoutItem]()
-
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 4) {
@@ -30,13 +27,12 @@ struct BarChartsView: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .padding(.bottom, 12)
-            
             Chart {
                 RuleMark(y: .value("Goal", 200))
                     .foregroundStyle(Color.black)
                     .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
                 
-                ForEach(workoutCounter) { workoutcounter in
+                ForEach(workoutCounter, id: \.self) { workoutcounter in
                     BarMark(
                         x: .value("Month", workoutcounter.date, unit: .month),
                         y: .value("WorkoutCount", workoutcounter.workoutCount)
@@ -47,7 +43,6 @@ struct BarChartsView: View {
             }
             .frame(height: 180)
             .chartYScale()
-            //Lägga till Y-Axis markers???
             .chartXAxis {
                 AxisMarks(values: workoutCounter.map {$0.date}) { date in
                     AxisValueLabel(format:
@@ -57,7 +52,6 @@ struct BarChartsView: View {
             }
             .chartYAxis {
                 AxisMarks(position: .leading)
-                
             }
             HStack {
                 Image(systemName: "line.diagonal")
@@ -69,26 +63,21 @@ struct BarChartsView: View {
             }
             .font(.caption2)
             .padding(.leading, 4)
-            
-            
         }
         .onAppear() {
             listenToFirestore()
         }
         .padding()
     }
-    
     func listenToFirestore() {
         if let currentUser {
-            db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, err in
+            db.collection("users").document(currentUser.uid).collection("exercises").addSnapshotListener { snapshot, errorLoading in
                 guard let snapshot = snapshot else {return}
-                
-                if let err = err {
-                    print("Error getting document \(err)")
+                if let errorLoading = errorLoading {
+                    print("Error getting document \(errorLoading)")
                 } else {
                     workoutCounter.removeAll()
                     for document in snapshot.documents {
-                        
                         let result = Result {
                             try document.data(as: WorkoutItem.self)
                         }
@@ -103,19 +92,10 @@ struct BarChartsView: View {
             }
         }
     }
-    
-
 }
-//struct BarChartsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BarChartsView(workoutitems: <#[WorkoutItem]#>)
-//    }
-//}
-
 extension Date {
     static func from(month: Int) -> Date {
         let components = DateComponents(month: month)
         return Calendar.current.date(from: components)!
     }
 }
-

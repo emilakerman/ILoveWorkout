@@ -24,16 +24,16 @@ struct FirstScreenView: View {
                         .foregroundColor(.white)
                     Spacer()
                     NavigationLink (destination:
-                                   ContentView(), isActive:
+                                        ContentView(), isActive:
                                         $isActive) {
                         Button(action: {
                             isActive = true
                         }) {
                             HStack {
-                                Image(systemName: "plus.circle")
+                                Image(systemName: "arrow.right.circle")
                                     .font(.system(size: 24))
                                     .foregroundColor(.white)
-                                Text("Continue")
+                                Text("Get started")
                                     .font(.system(size: 24))
                                     .foregroundColor(.white)
                             }.padding()
